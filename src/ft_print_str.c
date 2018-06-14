@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:54 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/14 15:46:52 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/14 16:15:11 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int				ft_print_str(va_list ap, char car)
 	int		write;
 	int		c;
 
-	printf("g_norec = %c\n", g_noprec);
 	c = 0;
 	str = (char*)malloc(sizeof(char));
 	if (car == 's')
