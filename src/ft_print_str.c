@@ -6,11 +6,35 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:54 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/14 16:41:40 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/14 16:49:15 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
+
+static	void	ft_g_prec_s(int len, int *x, int *y)
+{
+	if (g_minfd > len && g_p > len)
+	{
+		*x = len;
+		*y = g_p - len;
+	}
+	if (g_minfd < len && g_p < len)
+	{
+		if (g_minfd < g_p)
+		{
+			*x = g_minfd;
+			*y = g_p - g_minfd;
+		}
+		if (g_minfd > g_p)
+		{
+			*x = g_minfd;
+			*y = 0;
+		}
+	}
+
+
+}
 
 static	void	ft_g_prec(int len, char *str, int i)
 {
@@ -19,24 +43,8 @@ static	void	ft_g_prec(int len, char *str, int i)
 
 	x = 0;
 	y = 0;
-	if (g_minfd > len && g_p > len)
-	{
-		x = len;
-		y = g_p - len;
-	}
-	if (g_minfd < len && g_p < len)
-	{
-		if (g_minfd < g_p)
-		{
-			x = g_minfd;
-			y = g_p - g_minfd;
-		}
-		if (g_minfd > g_p)
-		{
-			x = g_minfd;
-			y = 0;
-		}
-	}
+	if ((g_minfd > len && g_p > len) | (g_minfd < len && g_p < len))
+		ft_g_prec_s(len, &x, &y);
 	if (g_minfd < len && g_p > len)
 	{
 		x = g_minfd;
@@ -52,6 +60,7 @@ static	void	ft_g_prec(int len, char *str, int i)
 	while (y--)
 		ft_putchar(' ');
 }
+
 static	void	ft_noprec_str(int len, char *str)
 {
 	int c;
@@ -94,6 +103,5 @@ int				ft_print_str(va_list ap, char car)
 	if (g_noprec == '-')
 		ft_noprec_str(ft_strlen(str), str);
 	c = ft_len_ret_nbr(7, (int)ft_strlen(str));
-
 	return (c);
 }
