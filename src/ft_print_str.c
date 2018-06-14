@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:54 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/14 16:54:52 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/14 16:56:52 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ static	void	ft_noprec_str(int len, char *str)
 int				ft_print_str(va_list ap, char car)
 {
 	char	*str;
-	wchar_t		*wstr;
 	int		write;
 	int		c;
 
