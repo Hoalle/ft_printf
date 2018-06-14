@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 18:00:11 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/13 17:38:00 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/14 15:19:25 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static int		ft_verif_arg(char *arg)
 				arg[i] != 'o' && arg[i] != 'O' && arg[i] != 'p' && arg[i] != 'h'
 				&& arg[i] != 'j' && arg[i] != 'z' && arg[i] != 'l' && arg[i] !=
 				' ' && arg[i] != '#' && arg[i] != '-' && (arg[i] < '0' || arg[i]
-					> '9') && arg[i] != '+' && arg[i] != '.')
+					> '9') && arg[i] != '+' && arg[i] != '.' && arg[i] != '*')
 			return (1);
 		i++;
 	}
