@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:25 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/05 11:34:42 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/14 15:37:57 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,11 @@ int				ft_precision(va_list ap, char *arg)
 	if (star == 2)
 	{
 		ft_star_2(arg);
+		while (arg[i])
+		{
+			if (arg[i++] == '-')
+				g_noprec = '-';
+		}
 		return (0);
 	}
 	ft_precision2(arg);
