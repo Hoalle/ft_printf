@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:54 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/14 16:15:11 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/14 16:19:15 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static	void	ft_noprec_str(int len, char *str)
 	}
 	else
 	{
+		ft_putstr(str);
 		if (g_minfd >= len)
 			c = g_minfd - len;
 		while (c--)
@@ -64,6 +65,5 @@ int				ft_print_str(va_list ap, char car)
 	if (g_noprec == '-')
 		ft_noprec_str(ft_strlen(str), str);
 	c = ft_len_ret_nbr(7, (int)ft_strlen(str));
-
 	return (c);
 }
