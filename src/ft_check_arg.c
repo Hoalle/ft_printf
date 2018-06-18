@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 18:00:11 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/15 14:59:10 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/18 15:41:35 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,39 @@ static char		*ft_copy(char *f, int i)
 static	int		ft_undefined_copy(char *f, int tmp, int i)
 {
 	int count;
+	int j;
+	int tmp2;
+	char *arg;
 
 	count = 0;
-	while (f[tmp] == 'h' || f[tmp] == 'j' || f[tmp] == 'z' || f[tmp] == 'l'
+	j = 0;
+	tmp2 = tmp;
+	arg = (char*)malloc(sizeof(char) * i - tmp2 + 1);
+	while (tmp2 < i)
+		arg[j++] = f[tmp2++];
+	ft_reset();
+	ft_precision2(arg);
+	if (g_minfd != 0 )
+	{
+		while ((f[tmp] >= '0' && f[tmp] <= '9') || f[tmp] == ' ' || f[tmp] ==
+				'-')
+			tmp++;
+		count = g_minfd - 1;
+		if (g_noprec != '-')
+		{
+			g_minfd--;
+			while (g_minfd--)
+				ft_putchar(' ');
+		}
+		else if (g_noprec == '-')
+		{
+			ft_putchar(f[tmp]);
+			tmp++;
+			count++;
+			ft_no_prec("0", 0, 0);
+		}
+
+	}	while (f[tmp] == 'h' || f[tmp] == 'j' || f[tmp] == 'z' || f[tmp] == 'l'
 			|| f[tmp] == ' ' || f[tmp] == '#')
 		tmp++;
 	while (tmp <= i)
@@ -53,6 +83,7 @@ static	int		ft_undefined_copy(char *f, int tmp, int i)
 		count++;
 		tmp++;
 	}
+	free(arg);
 	return (count);
 }
 
@@ -77,6 +108,7 @@ static	int		ft_undefined_percent(char *f, int tmp, int i)
 	tmp = tmp2;
 	while (tmp < i)
 		arg[j++] = f[tmp++];
+	ft_reset();
 	ft_precision2(arg);
 	count = ft_print_perc('%');
 	free(arg);
@@ -121,9 +153,13 @@ int				ft_check_arg(char *f, int i, char **arg, int *j)
 		}
 		if (f[i] == '%')
 		{
-			*j = i - 1;
-			if (f[tmp] == '%' && f[i + 1])
-				*j = i;
+			*j = i;
+			if (f[i] == '%' && (f[i + 1] == 'c' || f[i + 1] == 'C' || f[i + 1]
+						== 'd' || f[i + 1] == 'D' || f[i + 1] == 'i' || f[i + 1]
+						== 's' || f[i + 1] == 'S' || f[i + 1] == 'p' || f[i + 1]
+						== 'o' || f[i + 1] == 'O' || f[i + 1] == 'u' || f[i + 1]
+						== 'U' || f[i + 1] == 'x' || f[i + 1] == 'X'))
+				*j = i - 1;
 			return (ft_undefined_percent(f, tmp, i));
 		}
 		i++;

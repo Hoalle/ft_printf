@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:58 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/15 11:57:01 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/18 14:39:32 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ static	char	*ft_s_print_u(va_list ap, char car, char flags)
 		llgc = va_arg(ap, unsigned long long int);
 		str = ft_longlong_utoa(llgc);
 	}
-	if ((flags == 'h') && car != 'U')
+	if (((flags == 'h') && car != 'U') || (car == 'U' && flags == 'H'))
 	{
 		shc = va_arg(ap, int);
 		str = ft_short_utoa(shc);
 	}
-	if (flags == 'H')
+	if (flags == 'H' && car != 'U')
 	{
 		c = va_arg(ap, unsigned int);
 		str = ft_char_utoa(c);

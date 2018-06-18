@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:37 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/07 17:05:52 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/18 14:30:50 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,13 @@ static	char	*ft_s_hexa(va_list ap, char flags2, int nb, unsigned int *c)
 		llc = va_arg(ap, unsigned long long int);
 		str = ft_longlong_htoa(llc, nb);
 	}
-	else if (flags2 != 'l' && flags2 != 'j' && flags2 != 'L' && flags2 != 'z')
+	if (flags2 == 'H')
+	{
+		*c = va_arg(ap, unsigned int);
+		str = ft_char_htoa(*c, nb);
+	}
+	else if (flags2 != 'H' && flags2 != 'j' && flags2 != 'z' && flags2 != 'l' &&
+			flags2 != 'L')
 	{
 		*c = va_arg(ap, unsigned int);
 		str = ft_htoa(*c, nb);

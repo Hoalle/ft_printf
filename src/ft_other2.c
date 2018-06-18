@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 12:33:10 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/15 15:22:12 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/18 15:50:17 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ int				ft_signed_char(int n)
 	while (n < -128)
 	{
 		n = 128 - ((n + 128) * (-1));
-		return (n);
+		if (n > -128)
+			return (n);
 	}
 	while (n > 127)
 	{
 		n = (128 - (n - 128)) * (-1);
-		return (n);
+		if (n < 127)
+			return (n);
 	}
 	return (n);
 }
@@ -39,7 +41,7 @@ int				ft_signed_char(int n)
 int				ft_unsigned_char(unsigned int n)
 {
 	while (n > 255)
-		n = n - 255;
+		n = n - 256;
 	return (n);
 }
 

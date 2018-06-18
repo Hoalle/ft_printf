@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 11:55:48 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/13 17:35:34 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/18 15:16:30 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static	int		ft_s_pr(va_list ap, char *format, int count, int *i)
 			count = count + ft_letter(ap, format[(*i) + 1], '0', arg);
 		if (ft_strlen(arg) != 1)
 		{
+			ft_reset();
 			ft_precision(ap, arg);
 			flags = ft_check_flags(arg);
 			count += ft_letter(ap, format[(*i) + ft_strlen(arg)], flags, arg);
