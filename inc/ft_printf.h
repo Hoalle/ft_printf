@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 13:25:41 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/15 15:25:32 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/18 17:33:47 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int		ft_print_perc(char c);
 int		ft_s_nolen(void);
 int		ft_len_ret2(void);
 int		ft_write_flags_octal(char *arg);
+int		ft_ret_s1();
 
 char	*ft_itoa(int n);
 int		ft_atoi(char *nb);
@@ -62,6 +63,7 @@ char	*ft_longlong_otoa(unsigned long long int nb);
 char	*ft_long_otoa(unsigned long int nb);
 char	*ft_char_otoa(unsigned int nb);
 char	*ft_htoa(unsigned int nb, int n);
+char	*ft_char_htoa(unsigned int nb, int n);
 char	*ft_long_htoa(unsigned long int nb, int n);
 char	*ft_longlong_htoa(unsigned long long int nb, int n);
 char	*ft_utoa(unsigned int nb);

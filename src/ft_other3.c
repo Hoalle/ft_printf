@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 14:57:39 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/18 14:07:55 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/18 17:33:30 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,25 @@ int				ft_write_flags_octal(char *arg)
 		i++;
 	}
 	return (0);
+}
+
+int				ft_ret_s1()
+{
+	int ret;
+
+	ret = 2;
+	if (g_prec != '.')
+	{
+		ret++;
+		if (g_minfd > 2)
+			ret = ret + (g_minfd - 3);
+	}
+	if (g_prec == '.')
+	{
+		if (g_p > 1 && g_minfd == 0)
+			ret = ret + g_p - 2;
+		if (g_minfd != 0)
+			ret = ret + g_minfd;
+	}
+	return (ret);
 }
