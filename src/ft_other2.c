@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 12:33:10 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/14 12:36:26 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/15 15:22:12 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,26 @@ void			ft_reset(void)
 	g_zero = '\0';
 }
 
-int				ft_s_nolen(void)
+int				ft_signed_char(int n)
 {
-	int tmp;
+	while (n < -128)
+	{
+		n = 128 - ((n + 128) * (-1));
+		return (n);
+	}
+	while (n > 127)
+	{
+		n = (128 - (n - 128)) * (-1);
+		return (n);
+	}
+	return (n);
+}
 
-	if (g_p != 0 && g_minfd == 0)
-	{
-		tmp = g_p;
-		while (tmp--)
-			ft_putchar(' ');
-	}
-	else if (g_p > g_minfd)
-	{
-		tmp = g_p - g_minfd;
-		while (tmp--)
-			ft_putchar(' ');
-		tmp = g_minfd;
-		while (tmp--)
-			ft_putchar('0');
-	}
-	if (g_p < g_minfd)
-	{
-		tmp = g_minfd;
-		while (tmp--)
-			ft_putchar('0');
-	}
-	return (0);
+int				ft_unsigned_char(unsigned int n)
+{
+	while (n > 255)
+		n = n - 255;
+	return (n);
 }
 
 int				ft_len_ret2(void)

@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:45 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/07 16:20:30 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/15 15:51:24 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,48 +26,44 @@ static	int		ft_check_flags_octal(char *arg)
 	return (0);
 }
 
-static	int		ft_write_flags_octal(char *arg)
-{
-	int i;
-
-	i = 0;
-	while (arg[i])
-	{
-		if (arg[i] == '#')
-		{
-			ft_putchar('0');
-			return (-1);
-		}
-		i++;
-	}
-	return (0);
-}
-
-static char		*ft_s_o(char f2, va_list ap, char car, unsigned int *c)
+static void		ft_s2_o(char f2, va_list ap, char car, char **str)
 {
 	unsigned long long int	llgc;
 	unsigned long int		lgc;
-	char					*str;
 
-	str = "\0";
 	lgc = 0;
 	llgc = 0;
-	if ((car == 'o' || f2 == 'H') && f2 != 'l' && f2 != 'L' && f2 != 'h' && f2
-			!= 'j' && f2 != 'z')
-	{
-		*c = va_arg(ap, unsigned int);
-		str = ft_otoa(*c);
-	}
-	else if (f2 == 'h' || f2 == 'z' || f2 == 'L')
+	if (f2 == 'h' || f2 == 'z' || f2 == 'L')
 	{
 		llgc = va_arg(ap, unsigned long long int);
-		str = ft_longlong_otoa(llgc);
+		*str = ft_longlong_otoa(llgc);
 	}
 	else if (car == 'O' || f2 == 'l' || f2 == 'j')
 	{
 		lgc = va_arg(ap, unsigned long int);
-		str = ft_long_otoa(lgc);
+		*str = ft_long_otoa(lgc);
 	}
+}
+
+static char		*ft_s_o(char f2, va_list ap, char car, unsigned int *c)
+{
+	char					*str;
+
+	str = "\0";
+	if ((car == 'o') && f2 != 'l' && f2 != 'L' && f2 != 'h' && f2
+			!= 'j' && f2 != 'z' && f2 != 'H')
+	{
+		*c = va_arg(ap, unsigned int);
+		str = ft_otoa(*c);
+	}
+	else if (f2 == 'H' && car != 'O')
+	{
+		*c = va_arg(ap, unsigned int);
+		str = ft_char_otoa(*c);
+	}
+	else if (car == 'O' || f2 == 'h' || f2 == 'z' || f2 == 'L' || f2 == 'l' ||
+			f2 == 'j')
+		ft_s2_o(f2, ap, car, &str);
 	return (str);
 }
 

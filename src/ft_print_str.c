@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:54 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/14 16:56:52 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/15 11:21:39 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int				ft_print_str(va_list ap, char car)
 	char	*str;
 	int		write;
 	int		c;
+	wchar_t *wstr;
 
 	c = 0;
 	str = (char*)malloc(sizeof(char));
@@ -97,6 +98,15 @@ int				ft_print_str(va_list ap, char car)
 		write = ft_prec_min_str(ft_strlen(str), str);
 		if (write != 1 && g_noprec != '-')
 			ft_putstr(str);
+	}
+	if (car == 'S')
+	{
+		wstr = va_arg(ap, wchar_t*);
+		if (wstr == NULL)
+		{
+			ft_putstr("(null)");
+			return (6);
+		}
 	}
 	if (g_noprec == '-')
 		ft_noprec_str(ft_strlen(str), str);

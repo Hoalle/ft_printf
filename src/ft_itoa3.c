@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 11:59:05 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/14 12:16:27 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/15 14:29:37 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ static char		*ft_write(char *str, int n, int len)
 		n = -n;
 		i++;
 	}
-	str[len] = '\0';
-	len--;
+	str[len + 1] = '\0';
 	while (len >= i)
 	{
 		str[len] = (n % 10) + 48;
@@ -40,14 +39,11 @@ char			*ft_char_itoa(int n)
 	int			len;
 	int			temp;
 
-	temp = n;
 	len = 0;
-	if (n < -128)
-		n = 128 - ((n + 128) * (-1));
-	if (n > 127)
-		n = (128 - (n - 128)) * (-1);
+	n = ft_signed_char(n);
 	if (n < 0)
 		len++;
+	temp = n;
 	while (temp > 9 || temp < -9)
 	{
 		temp = temp / 10;
@@ -55,7 +51,6 @@ char			*ft_char_itoa(int n)
 	}
 	if (!(str = (char *)malloc(sizeof(*str) * (len + 2))))
 		return (0);
-	len++;
 	str = ft_write(str, n, len);
 	return (str);
 }
