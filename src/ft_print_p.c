@@ -74,47 +74,18 @@ static int	ft_s_1_p()
 	return (ret);
 }
 
-static int	ft_s_2_p(char *str, char *arg)
-{
-	int c;
-
-	c = 2;
-	if (g_zero == '0')
-		ft_putstr("0x");
-	ft_prec_min_oxu(0, ft_strlen(str) + 2, arg, 'p');
-	if (g_zero != '0')
-		ft_putstr("0x");
-	ft_putstr(str);
-	if (g_noprec == '-' && g_minfd >= ((int)ft_strlen(str) + 2))
-	{
-		c = g_minfd - ft_strlen(str) - c;
-		while (c--)
-			ft_putchar(' ');
-	}
-	return (0);
-}
-
 int			ft_print_p(va_list ap, char *arg)
 {
 	char			*str;
 	unsigned long	c;
 	int				ret;
-	int x;
 
-	x = 1;
 	c = va_arg(ap, unsigned long);
 	str = ft_long_htoa(c, 97);
 	if (ft_strcmp(str, "0") == 0)
-	{
-		x = 1;
 		ret = ft_s_1_p();
-	}
 	else
-	{
-		x = 2;
-		ft_s_2_p(str, arg);
-		ret = ft_strlen(str) + x + ft_len_ret_nbr(0, (int)ft_strlen(str) + 2);
-	}
+		ret = ft_prec_min_p(arg, str);
 	free(str);
 	return (ret);
 }

@@ -40,15 +40,30 @@ static int		ft_precision_str(int len, char *str)
 	return (0);
 }
 
+static int		ft_zero_str()
+{
+	int tmp;
+
+	if (g_p > g_minfd)
+	{
+		tmp = g_p - 1;
+		while (tmp--)
+			ft_putchar('0');
+	}
+	return (0);
+}
+
 int				ft_prec_min_str(int len, char *str)
 {
 	int ret;
 
 	ret = 0;
-	if (g_prec == '.' && g_noprec != '-')
+	if (g_prec == '.' && g_noprec != '-' && g_zero != '0')
 	{
 		ret = ft_precision_str(len, str);
 	}
+	if (g_prec == '.' && g_zero == '0')
+		ft_zero_str();
 	if (g_prec != '.' && g_noprec != '-' && len < g_minfd)
 	{
 		len = g_minfd - len;

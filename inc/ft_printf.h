@@ -82,6 +82,7 @@ int		ft_minfd_nbr(int len, int nbflags, char *nbr);
 int		ft_prec_nbr(int flags, int nbflags, char *nbr, int len);
 int		ft_write_flags_nbr(int flags, char *nbr);
 int		ft_prec_min_oxu(int flags, int len, char *arg, char car);
+int		ft_prec_min_p(char *arg, char *str);
 int		ft_prec_min_str(int len, char *str);
 
 #endif
