@@ -77,3 +77,48 @@ int				ft_ret_s1()
 	}
 	return (ret);
 }
+
+int		ft_prec_undefined(int tmp, int count, char *f)
+{
+	char g;
+
+	if (g_zero == '0')
+		g = '0';
+	else
+		g = ' ';
+	if (g_prec != '.')
+	{
+		count = g_minfd - 1;
+		if (g_noprec != '-')
+		{
+			g_minfd--;
+			while (g_minfd--)
+				ft_putchar(g);
+		}
+		else if (g_noprec == '-')
+		{
+			ft_putchar(f[tmp]);
+			tmp++;
+			count++;
+			ft_no_prec("0", 0, 0);
+		}
+	}
+	if (g_prec == '.')
+	{
+		count = g_p - 1;
+		if (g_noprec != '-')
+		{
+			g_p--;
+			while (g_p--)
+				ft_putchar(g);
+		}
+		else if (g_noprec == '-')
+		{
+			ft_putchar(f[tmp]);
+			tmp++;
+			count++;
+			ft_no_prec("0", 0, 0);
+		}
+	}
+	return (count);
+}

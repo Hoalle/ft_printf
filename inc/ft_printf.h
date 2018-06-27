@@ -30,6 +30,7 @@ char	ft_check_flags(char *arg);
 int		ft_check_arg(char *f, int i, char **arg, int *j);
 int		ft_precision(va_list ap, char *arg);
 int		ft_precision2(char *arg);
+int		ft_prec_undefined(int tmp, int count, char *f);
 void	ft_no_prec(char *nbr, int nbflags, int c);
 int		ft_len_ret_nbr(int nbflags, int lenbr);
 int		ft_check_flags_nbr(char *arg);

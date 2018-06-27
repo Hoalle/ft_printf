@@ -54,27 +54,16 @@ static	int		ft_undefined_copy(char *f, int tmp, int i)
 		arg[j++] = f[tmp2++];
 	ft_reset();
 	ft_precision2(arg);
-	if (g_minfd != 0 )
+	if (g_minfd != 0 || g_p != 0)
 	{
 		while ((f[tmp] >= '0' && f[tmp] <= '9') || f[tmp] == ' ' || f[tmp] ==
-				'-')
+				'-' || f[tmp] == '.')
 			tmp++;
-		count = g_minfd - 1;
-		if (g_noprec != '-')
-		{
-			g_minfd--;
-			while (g_minfd--)
-				ft_putchar(' ');
-		}
-		else if (g_noprec == '-')
-		{
-			ft_putchar(f[tmp]);
-			tmp++;
-			count++;
-			ft_no_prec("0", 0, 0);
-		}
-
-	}	while (f[tmp] == 'h' || f[tmp] == 'j' || f[tmp] == 'z' || f[tmp] == 'l'
+		count = ft_prec_undefined(tmp, count, f);
+		if (g_noprec == '-')
+		tmp++;
+	}
+	while (f[tmp] == 'h' || f[tmp] == 'j' || f[tmp] == 'z' || f[tmp] == 'l'
 			|| f[tmp] == ' ' || f[tmp] == '#')
 		tmp++;
 	while (tmp <= i)

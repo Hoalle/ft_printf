@@ -53,6 +53,12 @@ int		ft_print_perc(char c)
 	if (g_minfd >= 1 && g_prec != '.')
 		tmp = g_minfd - 1;
 	g_minfd -= 2;
+	if (g_zero == '0' && g_p != 0 && g_prec == '.')
+	{
+		tmp = g_p-- - 1;
+		while (g_p--)
+			ft_putchar(g);
+	}
 	if (g_noprec != '-' && g_prec != '.')
 	{
 		while (g_minfd-- >= 0)

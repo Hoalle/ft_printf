@@ -90,13 +90,15 @@ int				ft_print_str(va_list ap, char car)
 	if (car == 's')
 	{
 		str = va_arg(ap, char*);
-		if (str == NULL)
+		if (str == NULL && g_minfd == 0 && g_p == 0)
 		{
 			ft_putstr("(null)");
 			return (6);
 		}
+		if (str == NULL)
+			str = "0";
 		write = ft_prec_min_str(ft_strlen(str), str);
-		if (write != 1 && g_noprec != '-')
+		if (write != 1 && g_noprec != '-' && str != NULL)
 			ft_putstr(str);
 	}
 	if (car == 'S')

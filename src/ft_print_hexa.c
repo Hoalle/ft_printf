@@ -101,6 +101,8 @@ static	int		ft_s_p_hexa(unsigned int c, char *str, char *arg, char car)
 	if (ft_strcmp(str, "0") == 0 && flags == 4)
 		flags = 0;
 	nb = ft_strlen(str) + ft_len_ret_nbr(flags, (int)ft_strlen(str));
+	if (flags == 4 && g_prec == '.' && g_minfd != 0 && g_p == 0)
+		nb = nb + 2;
 	return (nb);
 }
 
