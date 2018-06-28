@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 13:25:41 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/18 17:33:47 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/28 14:45:18 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ int		ft_s_nolen(void);
 int		ft_len_ret2(void);
 int		ft_write_flags_octal(char *arg);
 int		ft_ret_s1();
+int		ft_undefined_copy(char *f, int tmp, int i);
+int		ft_check_flags_hexa(char *arg);
+int		ft_flags_hexa(char *arg, char car);
 
 char	*ft_itoa(int n);
 int		ft_atoi(char *nb);

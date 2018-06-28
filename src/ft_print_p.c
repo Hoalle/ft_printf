@@ -6,13 +6,13 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:49 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/18 17:43:13 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/28 15:16:03 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
 
-static void	ft_ss_1_p()
+static void		ft_ss_1_p(void)
 {
 	int tmp;
 
@@ -30,9 +30,10 @@ static void	ft_ss_1_p()
 	}
 }
 
-static void	ft_no_precs1()
+static void		ft_no_precs1(void)
 {
 	int tmp;
+
 	if (g_p > 1 && g_minfd == 0 && g_prec == '.')
 	{
 		tmp = g_p - 2;
@@ -47,7 +48,7 @@ static void	ft_no_precs1()
 	}
 }
 
-static int	ft_s_1_p()
+static int		ft_s_1_p(void)
 {
 	int ret;
 	int tmp;
@@ -74,7 +75,7 @@ static int	ft_s_1_p()
 	return (ret);
 }
 
-int			ft_print_p(va_list ap, char *arg)
+int				ft_print_p(va_list ap, char *arg)
 {
 	char			*str;
 	unsigned long	c;

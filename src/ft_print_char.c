@@ -6,13 +6,13 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:34 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/13 17:42:28 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/28 14:41:22 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
 
-int		ft_print_char(va_list ap, char car)
+int				ft_print_char(va_list ap, char car)
 {
 	char	c;
 	int		b;
@@ -40,7 +40,22 @@ int		ft_print_char(va_list ap, char car)
 	return (1 + b);
 }
 
-int		ft_print_perc(char c)
+static void		ft_print_perc_s(int tmp, char g)
+{
+	if (g_zero == '0' && g_p != 0 && g_prec == '.')
+	{
+		tmp = g_p-- - 1;
+		while (g_p--)
+			ft_putchar(g);
+	}
+	if (g_noprec != '-' && g_prec != '.')
+	{
+		while (g_minfd-- >= 0)
+			ft_putchar(g);
+	}
+}
+
+int				ft_print_perc(char c)
 {
 	int		tmp;
 	char	g;
@@ -53,17 +68,7 @@ int		ft_print_perc(char c)
 	if (g_minfd >= 1 && g_prec != '.')
 		tmp = g_minfd - 1;
 	g_minfd -= 2;
-	if (g_zero == '0' && g_p != 0 && g_prec == '.')
-	{
-		tmp = g_p-- - 1;
-		while (g_p--)
-			ft_putchar(g);
-	}
-	if (g_noprec != '-' && g_prec != '.')
-	{
-		while (g_minfd-- >= 0)
-			ft_putchar(g);
-	}
+	ft_print_perc_s(tmp, g);
 	ft_putchar(c);
 	if (g_noprec == '-' && g_prec != '.')
 	{

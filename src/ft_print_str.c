@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:54 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/15 11:21:39 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/28 15:12:58 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,26 @@ static	void	ft_noprec_str(int len, char *str)
 	}
 }
 
+static int		ft_print_str_s(char *str)
+{
+	int write;
+
+	if (str == NULL && g_minfd == 0 && g_p == 0)
+	{
+		ft_putstr("(null)");
+		return (6);
+	}
+	if (str == NULL)
+		str = "0";
+	write = ft_prec_min_str(ft_strlen(str), str);
+	if (write != 1 && g_noprec != '-' && str != NULL)
+		ft_putstr(str);
+	return (0);
+}
+
 int				ft_print_str(va_list ap, char car)
 {
 	char	*str;
-	int		write;
 	int		c;
 	wchar_t *wstr;
 
@@ -90,16 +106,8 @@ int				ft_print_str(va_list ap, char car)
 	if (car == 's')
 	{
 		str = va_arg(ap, char*);
-		if (str == NULL && g_minfd == 0 && g_p == 0)
-		{
-			ft_putstr("(null)");
+		if (ft_print_str_s(str) == 6)
 			return (6);
-		}
-		if (str == NULL)
-			str = "0";
-		write = ft_prec_min_str(ft_strlen(str), str);
-		if (write != 1 && g_noprec != '-' && str != NULL)
-			ft_putstr(str);
 	}
 	if (car == 'S')
 	{

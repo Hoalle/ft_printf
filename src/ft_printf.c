@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 11:55:48 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/18 15:16:30 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/28 15:02:33 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,9 @@ static	int		ft_s_pr(va_list ap, char *format, int count, int *i)
 		free(arg);
 		return (count);
 	}
-	count = count + ret;
 	(*i) = j;
 	free(arg);
-	return (count);
+	return (count + ret);
 }
 
 int				ft_printf(const char *format, ...)

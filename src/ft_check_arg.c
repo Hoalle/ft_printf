@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 18:00:11 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/18 15:41:35 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/28 15:26:32 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,43 +37,6 @@ static char		*ft_copy(char *f, int i)
 		i++;
 	}
 	return (str);
-}
-
-static	int		ft_undefined_copy(char *f, int tmp, int i)
-{
-	int count;
-	int j;
-	int tmp2;
-	char *arg;
-
-	count = 0;
-	j = 0;
-	tmp2 = tmp;
-	arg = (char*)malloc(sizeof(char) * i - tmp2 + 1);
-	while (tmp2 < i)
-		arg[j++] = f[tmp2++];
-	ft_reset();
-	ft_precision2(arg);
-	if (g_minfd != 0 || g_p != 0)
-	{
-		while ((f[tmp] >= '0' && f[tmp] <= '9') || f[tmp] == ' ' || f[tmp] ==
-				'-' || f[tmp] == '.')
-			tmp++;
-		count = ft_prec_undefined(tmp, count, f);
-		if (g_noprec == '-')
-		tmp++;
-	}
-	while (f[tmp] == 'h' || f[tmp] == 'j' || f[tmp] == 'z' || f[tmp] == 'l'
-			|| f[tmp] == ' ' || f[tmp] == '#')
-		tmp++;
-	while (tmp <= i)
-	{
-		ft_putchar(f[tmp]);
-		count++;
-		tmp++;
-	}
-	free(arg);
-	return (count);
 }
 
 static	int		ft_undefined_percent(char *f, int tmp, int i)
@@ -124,6 +87,15 @@ static int		ft_verif_arg(char *arg)
 	return (0);
 }
 
+static int		ft_ifcheck(char x, char xp)
+{
+	if (xp == '%' && (x == 'c' || x == 'C' || x == 'd' || x == 'D' || x == 'i'
+				|| x == 's' || x == 'S' || x == 'p' || x == 'o' || x  == 'O' ||
+				x == 'u' || x == 'U' || x == 'x' || x == 'X'))
+		return (1);
+	return (0);
+}
+
 int				ft_check_arg(char *f, int i, char **arg, int *j)
 {
 	int tmp;
@@ -143,11 +115,7 @@ int				ft_check_arg(char *f, int i, char **arg, int *j)
 		if (f[i] == '%')
 		{
 			*j = i;
-			if (f[i] == '%' && (f[i + 1] == 'c' || f[i + 1] == 'C' || f[i + 1]
-						== 'd' || f[i + 1] == 'D' || f[i + 1] == 'i' || f[i + 1]
-						== 's' || f[i + 1] == 'S' || f[i + 1] == 'p' || f[i + 1]
-						== 'o' || f[i + 1] == 'O' || f[i + 1] == 'u' || f[i + 1]
-						== 'U' || f[i + 1] == 'x' || f[i + 1] == 'X'))
+			if (ft_ifcheck(f[i + 1], f[i]) == 1)
 				*j = i - 1;
 			return (ft_undefined_percent(f, tmp, i));
 		}

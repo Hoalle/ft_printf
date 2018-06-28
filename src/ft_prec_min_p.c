@@ -6,11 +6,27 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:11 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/13 16:11:20 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/28 14:38:42 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
+
+static int		ft_prec_min_p_s2(char *str, int tmp, int len, int ret)
+{
+	tmp = g_p - g_minfd - 2;
+	while (tmp--)
+		ft_putchar(' ');
+	ft_putstr("0x");
+	tmp = g_minfd - len;
+	if (tmp < 0)
+		tmp = 0;
+	ret = tmp + 2 + len + (g_p - g_minfd);
+	while (tmp--)
+		ft_putchar('0');
+	ft_putstr(str);
+	return (ret);
+}
 
 static int		ft_prec_min_p_s(char *str)
 {
@@ -26,35 +42,22 @@ static int		ft_prec_min_p_s(char *str)
 		tmp = g_minfd - len;
 		if (tmp < 0)
 			tmp = 0;
-			ret = 2 + tmp + len;
-		while(tmp--)
+		ret = 2 + tmp + len;
+		while (tmp--)
 			ft_putchar('0');
 		ft_putstr(str);
 	}
 	if (g_p > g_minfd)
-	{
-		tmp = g_p - g_minfd - 2;
-		while (tmp--)
-			ft_putchar(' ');
-		ft_putstr("0x");
-		tmp = g_minfd - len;
-		if (tmp < 0)
-			tmp = 0;
-		ret = tmp + 2 + len + (g_p - g_minfd);
-		while (tmp--)
-			ft_putchar('0');
-		ft_putstr(str);
-	}
+		ret = ft_prec_min_p_s2(str, tmp, len, ret);
 	return (ret);
 }
 
-int		ft_prec_min_p(char *arg, char *str)
+int				ft_prec_min_p(char *arg, char *str)
 {
 	int len;
 	int c;
 	int ret;
 
-	c = 2;
 	len = ft_strlen(str);
 	if (g_prec != '.' || (g_prec == '.' && g_p > g_minfd && g_minfd < len &&
 	g_p > len) || (g_p == 0 && g_prec == '.' && g_minfd == 0))
@@ -67,7 +70,7 @@ int		ft_prec_min_p(char *arg, char *str)
 		ft_putstr(str);
 		if (g_noprec == '-' && g_minfd >= ((int)ft_strlen(str) + 2))
 		{
-			c = g_minfd - ft_strlen(str) - c;
+			c = g_minfd - ft_strlen(str) - 2;
 			while (c--)
 				ft_putchar(' ');
 		}

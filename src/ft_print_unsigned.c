@@ -6,26 +6,32 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:58 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/18 14:39:32 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/28 15:05:18 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
 
-static	char	*ft_s_print_u(va_list ap, char car, char flags)
+static	char	*ft_s_print_u_2(va_list ap, char *str)
 {
 	unsigned long int		lgc;
+
+	lgc = va_arg(ap, unsigned long int);
+	str = ft_long_utoa(lgc);
+	return (str);
+}
+
+static	char	*ft_s_print_u(va_list ap, char car, char flags)
+{
 	unsigned long long int	llgc;
 	unsigned short int		shc;
 	char					*str;
 	unsigned int			c;
 
+	str = NULL;
 	if ((car == 'U' || flags == 'l' || flags == 'j' || (car == 'U' &&
 					flags == 'h')) && flags != 'H')
-	{
-		lgc = va_arg(ap, unsigned long int);
-		str = ft_long_utoa(lgc);
-	}
+		str = ft_s_print_u_2(ap, str);
 	if ((flags == 'L' || flags == 'z') && car != 'U')
 	{
 		llgc = va_arg(ap, unsigned long long int);

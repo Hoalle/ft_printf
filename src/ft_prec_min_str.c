@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:20 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/14 15:33:35 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/28 14:39:03 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int		ft_precision_str(int len, char *str)
 	return (0);
 }
 
-static int		ft_zero_str()
+static int		ft_zero_str(void)
 {
 	int tmp;
 

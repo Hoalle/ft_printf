@@ -6,55 +6,21 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:37 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/18 14:30:50 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/28 14:56:16 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
 
-static int		ft_check_flags_hexa(char *arg)
-{
-	int i;
-
-	i = 0;
-	while (arg[i])
-	{
-		if (arg[i] == '#')
-			return (4);
-		i++;
-	}
-	return (0);
-}
-
-static	int		ft_flags_hexa(char *arg, char car)
-{
-	int i;
-
-	i = 0;
-	while (arg[i])
-	{
-		if (arg[i] == '#')
-		{
-			if (car == 'x')
-				ft_putstr("0x");
-			if (car == 'X')
-				ft_putstr("0X");
-			return (2);
-		}
-		i++;
-	}
-	return (0);
-}
-
-static	char	*ft_s_hexa(va_list ap, char flags2, int nb, unsigned int *c)
+static	char	*ft_s_hexa_2(va_list ap, char flags2, unsigned int **c, int nb)
 {
 	unsigned long int		lc;
 	unsigned long long int	llc;
 	char					*str;
 
+	str = NULL;
 	lc = 0;
 	llc = 0;
-	str = NULL;
 	if (flags2 == 'l' || flags2 == 'j')
 	{
 		lc = va_arg(ap, unsigned long int);
@@ -65,6 +31,18 @@ static	char	*ft_s_hexa(va_list ap, char flags2, int nb, unsigned int *c)
 		llc = va_arg(ap, unsigned long long int);
 		str = ft_longlong_htoa(llc, nb);
 	}
+	if (llc != 0 || lc != 0)
+		**c = 1;
+	return (str);
+}
+
+static	char	*ft_s_hexa(va_list ap, char flags2, int nb, unsigned int *c)
+{
+	char					*str;
+
+	str = NULL;
+	if (flags2 == 'l' || flags2 == 'j' || flags2 == 'L' || flags2 == 'z')
+		str = ft_s_hexa_2(ap, flags2, &c, nb);
 	if (flags2 == 'H')
 	{
 		*c = va_arg(ap, unsigned int);
@@ -76,7 +54,7 @@ static	char	*ft_s_hexa(va_list ap, char flags2, int nb, unsigned int *c)
 		*c = va_arg(ap, unsigned int);
 		str = ft_htoa(*c, nb);
 	}
-	if (*c != 0 || llc != 0 || lc != 0)
+	if (*c != 0)
 		*c = 1;
 	return (str);
 }

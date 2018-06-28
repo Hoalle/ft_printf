@@ -6,13 +6,13 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:16 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/07 16:14:25 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/28 15:11:45 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
 
-static	int		ft_flags_hexa(char *arg, char car)
+static	int		ft_flags_hexa_2(char *arg, char car)
 {
 	int i;
 
@@ -50,7 +50,7 @@ static	int		ft_preci_s(int flags, char *arg, char car, int len)
 			ft_putchar(' ');
 	}
 	if (flags == 4)
-		c = ft_flags_hexa(arg, car);
+		c = ft_flags_hexa_2(arg, car);
 	if (g_minfd >= len)
 	{
 		len = g_minfd - len;

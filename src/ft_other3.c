@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 14:57:39 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/18 17:33:30 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/06/28 15:16:41 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int				ft_write_flags_octal(char *arg)
 	return (0);
 }
 
-int				ft_ret_s1()
+int				ft_ret_s1(void)
 {
 	int ret;
 
@@ -78,14 +78,34 @@ int				ft_ret_s1()
 	return (ret);
 }
 
-int		ft_prec_undefined(int tmp, int count, char *f)
+static int		ft_prec_undefined_s(char *f, int tmp, char g)
+{
+	int count;
+
+	count = g_p - 1;
+	if (g_noprec != '-')
+	{
+		g_p--;
+		while (g_p--)
+			ft_putchar(g);
+	}
+	else if (g_noprec == '-')
+	{
+		ft_putchar(f[tmp]);
+		tmp++;
+		count++;
+		ft_no_prec("0", 0, 0);
+	}
+	return (count);
+}
+
+int				ft_prec_undefined(int tmp, int count, char *f)
 {
 	char g;
 
+	g = ' ';
 	if (g_zero == '0')
 		g = '0';
-	else
-		g = ' ';
 	if (g_prec != '.')
 	{
 		count = g_minfd - 1;
@@ -97,28 +117,12 @@ int		ft_prec_undefined(int tmp, int count, char *f)
 		}
 		else if (g_noprec == '-')
 		{
-			ft_putchar(f[tmp]);
-			tmp++;
+			ft_putchar(f[tmp++]);
 			count++;
 			ft_no_prec("0", 0, 0);
 		}
 	}
 	if (g_prec == '.')
-	{
-		count = g_p - 1;
-		if (g_noprec != '-')
-		{
-			g_p--;
-			while (g_p--)
-				ft_putchar(g);
-		}
-		else if (g_noprec == '-')
-		{
-			ft_putchar(f[tmp]);
-			tmp++;
-			count++;
-			ft_no_prec("0", 0, 0);
-		}
-	}
+		count = ft_prec_undefined_s(f, tmp, g);
 	return (count);
 }
