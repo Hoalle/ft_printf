@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 15:17:38 by cperrard          #+#    #+#             */
-/*   Updated: 2018/09/13 17:33:38 by cperrard         ###   ########.fr       */
+/*   Created: 2018/09/13 16:19:41 by cperrard          #+#    #+#             */
+/*   Updated: 2018/09/13 17:40:04 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ft_printf.h"
+#include "inc/ft_printf.h"
 
-size_t		ft_strlen(const char *str)
+int		main(void)
 {
-	size_t	i;
+	int ret1;
+	int ret2;
 
-	i = 0;
-	if (str == NULL)
-		return (1);
-	while (str[i])
-		i++;
-	return (i);
+	ret1 = 0;
+	ret2 = 0;
+	ret1 = ft_printf("{%05p}\n", 0);
+	ret2 = printf("{%05p}\n", 0);
+	printf("ret 1 = %d, ret 2 = %d\n", ret1, ret2);
+	return (0);
 }
