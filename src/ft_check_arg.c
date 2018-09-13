@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 18:00:11 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/28 15:26:32 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/09/13 15:57:33 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,10 @@ static int		ft_verif_arg(char *arg)
 
 static int		ft_ifcheck(char x, char xp)
 {
-	if (xp == '%' && (x == 'c' || x == 'C' || x == 'd' || x == 'D' || x == 'i'
-				|| x == 's' || x == 'S' || x == 'p' || x == 'o' || x  == 'O' ||
-				x == 'u' || x == 'U' || x == 'x' || x == 'X'))
+	if (xp == '%' && (x == 'c' || x == 'C' || x == 'd' || x == 'D' || x == 'i'))
+		return (1);
+	else if (x == 's' || x == 'S' || x == 'p' || x == 'o' || x == 'O' || x ==
+		'u' || x == 'U' || x == 'x' || x == 'X')
 		return (1);
 	return (0);
 }

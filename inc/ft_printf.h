@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 13:25:41 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/28 14:45:18 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/09/13 16:07:21 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		ft_undefined_copy(char *f, int tmp, int i);
 int		ft_check_flags_hexa(char *arg);
 int		ft_flags_hexa(char *arg, char car);
 
+void	ft_memdel(void **ap);
 char	*ft_itoa(int n);
 int		ft_atoi(char *nb);
 char	*ft_long_itoa(long int n);
