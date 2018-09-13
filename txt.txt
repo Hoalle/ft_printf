@@ -1,2 +1,0 @@
-
-norm corriger test 79 a voir et %S et %C 
