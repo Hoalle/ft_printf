@@ -1,24 +1,10 @@
-tatic void pointer_posMinWidth_zeroFlag(t_test *test)
-{
-		// test->debug = 1;
-			assert_printf("{%05p}", 0);
-}
-
-
-static void string_precision_minwdith_and_flagZero(t_test *test)
-{
-		// test->debug = 1;
-			assert_printf("{%05.s}", 0);
-}
-
-static void percent_precision_minwdith_and_flagZero(t_test *test)
-{
-		// test->debug = 1;
-			assert_printf("{%05.%}", 0);
-}
-
-static void test_octal_neg(t_test *test)
+92 static void test_octal_neg(t_test *test)
 {
 		// test->debug = 1;
 			assert_printf("%o, %ho, %hho", -42, -42, -42);
 }
+
+
+
+
+Pb de leaks probablement malloc print str %s

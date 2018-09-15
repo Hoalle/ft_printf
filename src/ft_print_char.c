@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 14:10:34 by cperrard          #+#    #+#             */
-/*   Updated: 2018/06/28 14:41:22 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/09/15 20:36:41 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int				ft_print_perc(char c)
 	tmp = 0;
 	if (g_minfd >= 1 && g_prec != '.')
 		tmp = g_minfd - 1;
+	if (g_prec == '.' && g_minfd < 1 && g_p >= 1)
+		tmp = g_p - 1;
 	g_minfd -= 2;
 	ft_print_perc_s(tmp, g);
 	ft_putchar(c);

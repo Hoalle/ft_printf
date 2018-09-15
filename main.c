@@ -6,7 +6,7 @@
 /*   By: cperrard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 16:19:41 by cperrard          #+#    #+#             */
-/*   Updated: 2018/09/13 17:40:04 by cperrard         ###   ########.fr       */
+/*   Updated: 2018/09/15 20:41:08 by cperrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int		main(void)
 
 	ret1 = 0;
 	ret2 = 0;
-	ret1 = ft_printf("{%05p}\n", 0);
-	ret2 = printf("{%05p}\n", 0);
+	ret1 = ft_printf("%4.15d\n", -42);
+	ret2 = printf("%4.15d\n", -42);
 	printf("ret 1 = %d, ret 2 = %d\n", ret1, ret2);
 	return (0);
 }
