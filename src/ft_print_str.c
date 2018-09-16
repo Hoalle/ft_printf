@@ -102,12 +102,14 @@ int				ft_print_str(va_list ap, char car)
 	wchar_t *wstr;
 
 	c = 0;
-	str = (char*)malloc(sizeof(char));
 	if (car == 's')
 	{
 		str = va_arg(ap, char*);
 		if (ft_print_str_s(str) == 6)
 			return (6);
+		if (g_noprec == '-')
+			ft_noprec_str(ft_strlen(str), str);
+		c = ft_len_ret_nbr(7, (int)ft_strlen(str));
 	}
 	if (car == 'S')
 	{
@@ -118,8 +120,5 @@ int				ft_print_str(va_list ap, char car)
 			return (6);
 		}
 	}
-	if (g_noprec == '-')
-		ft_noprec_str(ft_strlen(str), str);
-	c = ft_len_ret_nbr(7, (int)ft_strlen(str));
 	return (c);
 }

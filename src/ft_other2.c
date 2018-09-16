@@ -40,8 +40,7 @@ int				ft_signed_char(int n)
 
 int				ft_unsigned_char(unsigned int n)
 {
-	while (n > 255)
-		n = n - 256;
+	n = n & 0xFF;
 	return (n);
 }
 

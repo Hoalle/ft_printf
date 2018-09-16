@@ -36,6 +36,8 @@ static void		ft_s2_o(char f2, va_list ap, char car, char **str)
 	if (f2 == 'h' || f2 == 'z' || f2 == 'L')
 	{
 		llgc = va_arg(ap, unsigned long long int);
+		if (f2 == 'h')
+			llgc = llgc & 0xFFFF;
 		*str = ft_longlong_otoa(llgc);
 	}
 	else if (car == 'O' || f2 == 'l' || f2 == 'j')
